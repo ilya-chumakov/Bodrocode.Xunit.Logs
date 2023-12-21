@@ -5,14 +5,14 @@ namespace Bodrocode.xUnitLogging;
 
 public class XUnitLogger : ILogger
 {
-    public XUnitLogger(string categoryName, ITestOutputHelper writer)
+    public XUnitLogger(string categoryName, ITestOutputHelper output)
     {
         CategoryName = categoryName;
         ShortCategoryName = GetShortCategoryName(CategoryName);
-        Writer = writer;
+        Output = output;
     }
 
-    protected ITestOutputHelper Writer { get; }
+    protected ITestOutputHelper Output { get; }
 
     protected string ShortCategoryName { get; }
 
@@ -21,38 +21,37 @@ public class XUnitLogger : ILogger
     public void Log<TState>(LogLevel logLevel,
         EventId eventId,
         TState state,
-        Exception exception,
-        Func<TState, Exception, string> formatter)
+        Exception? exception,
+        Func<TState, Exception?, string> formatter)
     {
-        //todo why is this here?
         if (!IsEnabled(logLevel))
             return;
-
+        
         if (formatter == null)
             throw new ArgumentNullException(nameof(formatter));
 
         string message = formatter(state, exception);
+
         if (string.IsNullOrEmpty(message) && exception == null)
             return;
 
         string logLevelString = GetLogLevelString(logLevel);
 
+        //todo opt
         string line = $"{logLevelString}: {ShortCategoryName}: {message}";
 
-        Writer.WriteLine(line);
+        Output.WriteLine(line);
 
         if (exception != null)
-            Writer.WriteLine(exception.ToString());
+            Output.WriteLine(exception.ToString());
     }
 
-    public bool IsEnabled(LogLevel logLevel)
-    {
-        return true;
-    }
+    public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
 
     public IDisposable BeginScope<TState>(TState state)
+        where TState : notnull
     {
-        return new XUnitScope();
+        return XUnitScope.Instance;
     }
 
     private string GetShortCategoryName(string categoryName)
@@ -64,22 +63,15 @@ public class XUnitLogger : ILogger
 
     private static string GetLogLevelString(LogLevel logLevel)
     {
-        switch (logLevel)
+        return logLevel switch
         {
-            case LogLevel.Trace:
-                return "trce";
-            case LogLevel.Debug:
-                return "dbug";
-            case LogLevel.Information:
-                return "info";
-            case LogLevel.Warning:
-                return "warn";
-            case LogLevel.Error:
-                return "fail";
-            case LogLevel.Critical:
-                return "crit";
-            default:
-                throw new ArgumentOutOfRangeException(nameof(logLevel));
-        }
+            LogLevel.Trace => "trce",
+            LogLevel.Debug => "dbug",
+            LogLevel.Information => "info",
+            LogLevel.Warning => "warn",
+            LogLevel.Error => "fail",
+            LogLevel.Critical => "crit",
+            _ => throw new ArgumentOutOfRangeException(nameof(logLevel))
+        };
     }
 }

@@ -1,6 +1,13 @@
 ﻿namespace Bodrocode.xUnitLogging;
 
-public class XUnitScope : IDisposable
+/// <summary>
+///     An empty scope without any logic
+/// </summary>
+internal sealed class XUnitScope : IDisposable
 {
-    public void Dispose() { }
+    public static XUnitScope Instance { get; } = new();
+
+    public void Dispose()
+    {
+    }
 }
