@@ -1,6 +1,6 @@
 ﻿namespace Bodrocode.xUnitLogging;
 
-//todo inline?
+//todo remove
 public interface IXUnitLogWriter
 {
     void WriteLine(string str);

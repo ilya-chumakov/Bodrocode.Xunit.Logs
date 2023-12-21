@@ -11,10 +11,13 @@ public class FullControl_ManualTests : BaseTest
     public FullControl_ManualTests(ITestOutputHelper output) : base(output)
     {
         var services = new ServiceCollection();
-        services.AddLogging();
+        services.AddLogging(cfg =>
+        {
+            cfg.SetMinimumLevel(LogLevel.Trace);
+        });
         var provider = services.BuildServiceProvider();
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(new XUnitLoggerProvider(this));
+        loggerFactory.AddProvider(new XUnitLoggerProvider(output));
 
         _sut = new LogProducer(loggerFactory.CreateLogger<LogProducer>());
     }
@@ -22,6 +25,6 @@ public class FullControl_ManualTests : BaseTest
     [Fact]
     public void CallDotnetLogger_Default_WritesToXUnitOutput()
     {
-        _sut.CallDotnetLogger("foo");
+        _sut.CallDotnetLogger("foo", LogLevel.Trace);
     }
 }

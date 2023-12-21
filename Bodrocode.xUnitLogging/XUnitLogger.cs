@@ -1,21 +1,22 @@
 ﻿using Microsoft.Extensions.Logging;
+using Xunit.Abstractions;
 
 namespace Bodrocode.xUnitLogging;
 
 public class XUnitLogger : ILogger
 {
-    public XUnitLogger(string categoryName, IXUnitLogWriter writer)
+    public XUnitLogger(string categoryName, ITestOutputHelper writer)
     {
         CategoryName = categoryName;
         ShortCategoryName = GetShortCategoryName(CategoryName);
         Writer = writer;
     }
 
-    public IXUnitLogWriter Writer { get; }
+    protected ITestOutputHelper Writer { get; }
 
-    public string ShortCategoryName { get; }
+    protected string ShortCategoryName { get; }
 
-    public string CategoryName { get; }
+    protected string CategoryName { get; }
 
     public void Log<TState>(LogLevel logLevel,
         EventId eventId,
@@ -23,6 +24,7 @@ public class XUnitLogger : ILogger
         Exception exception,
         Func<TState, Exception, string> formatter)
     {
+        //todo why is this here?
         if (!IsEnabled(logLevel))
             return;
 

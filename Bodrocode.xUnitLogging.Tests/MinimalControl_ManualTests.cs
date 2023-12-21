@@ -10,7 +10,7 @@ public class MinimalControl_ManualTests : BaseTest
 
     public MinimalControl_ManualTests(ITestOutputHelper output) : base(output)
     {
-        var loggerFactory = XUnitLoggerProvider.CreateLoggerFactory(this);
+        var loggerFactory = XUnitLoggerProvider.CreateLoggerFactory(output);
 
         _sut = new LogProducer(loggerFactory.CreateLogger<LogProducer>());
     }
@@ -18,6 +18,6 @@ public class MinimalControl_ManualTests : BaseTest
     [Fact]
     public void CallDotnetLogger_Default_WritesToXUnitOutput()
     {
-        _sut.CallDotnetLogger("foo", LogLevel.Warning);
+        _sut.CallDotnetLogger("foo", LogLevel.Information);
     }
 }

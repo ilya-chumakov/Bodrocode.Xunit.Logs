@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
@@ -16,20 +15,6 @@ public class BaseIntegrationTest : BaseTest
         _provider = services.BuildServiceProvider();
 
         LoggerFactory = CreateLoggerFactory();
-    }
-    
-    private static ServiceCollection CreateServiceCollectionWithLogging()
-    {
-        var services = new ServiceCollection();
-        services.AddLogging(b =>
-        {
-            //b.AddConsole(x =>
-            //{
-            //    x.IncludeScopes = false;
-            //});
-            b.SetMinimumLevel(LogLevel.Debug);
-        });
-        return services;
     }
 
     /// <summary>
@@ -49,15 +34,18 @@ public class BaseIntegrationTest : BaseTest
             return _provider;
         }
     }
+
+    private static ServiceCollection CreateServiceCollectionWithLogging()
+    {
+        var services = new ServiceCollection();
+        services.AddLogging(b => { b.SetMinimumLevel(LogLevel.Debug); });
+        return services;
+    }
+
     private ILoggerFactory CreateLoggerFactory()
     {
         var loggerFactory = Provider.GetRequiredService<ILoggerFactory>();
-
-        //if (_options.CreateXUnitLoggerFactory)
-        {
-            loggerFactory.AddProvider(new XUnitLoggerProvider(this));
-        }
-
+        loggerFactory.AddProvider(new XUnitLoggerProvider(Output));
         return loggerFactory;
     }
 }

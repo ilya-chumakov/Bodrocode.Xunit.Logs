@@ -2,7 +2,7 @@
 
 namespace Bodrocode.xUnitLogging;
 
-public class BaseTest : IXUnitLogWriter
+public class BaseTest
 {
     protected readonly ITestOutputHelper Output;
 
@@ -11,8 +11,9 @@ public class BaseTest : IXUnitLogWriter
         Output = output;
     }
 
-    public void WriteLine(string str)
-    {
-        Output.WriteLine(str);
-    }
+    public void WriteLine(string str) 
+        => Output.WriteLine(str);
+
+    public void WriteLine(string format, params object[] args) 
+        => Output.WriteLine(format, args);
 }
