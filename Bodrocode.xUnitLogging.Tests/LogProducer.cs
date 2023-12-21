@@ -11,8 +11,8 @@ public class LogProducer
         _logger = logger;
     }
 
-    public void Do()
+    public void CallDotnetLogger(string text, LogLevel logLevel = LogLevel.Information)
     {
-        _logger.LogInformation("Do something");
+        _logger.Log(logLevel, text);
     }
 }

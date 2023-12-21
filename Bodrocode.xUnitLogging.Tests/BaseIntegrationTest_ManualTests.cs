@@ -13,8 +13,8 @@ public class BaseIntegrationTest_ManualTests : BaseIntegrationTest
     }
 
     [Fact]
-    public void Do_Default_WritesToXUnitOutput()
+    public void CallDotnetLogger_Default_WritesToXUnitOutput()
     {
-        _sut.Do();
+        _sut.CallDotnetLogger("foo");
     }
 }

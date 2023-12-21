@@ -3,41 +3,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging;
+namespace Bodrocode.xUnitLogging.Tests;
 
 public class BaseIntegrationTest : BaseTest
 {
     private readonly IServiceProvider _provider;
-    private readonly ServiceCollection _services;
 
     public BaseIntegrationTest(ITestOutputHelper console) : base(console)
     {
-        Configuration = BuildConfiguration();
+        var services = CreateServiceCollectionWithLogging();
 
-        _services = CreateServiceCollectionWithLogging();
-
-        ConfigureServices(_services);
-
-        _provider = _services.BuildServiceProvider();
+        _provider = services.BuildServiceProvider();
 
         LoggerFactory = CreateLoggerFactory();
-
-        Configure(Provider);
     }
-
-    private IConfigurationRoot BuildConfiguration()
-    {
-        var set = new Action<string, string>(Environment.SetEnvironmentVariable);
-
-        //set("DISABLE_HTTP_CLIENT_INPUT_VALIDATION", true.ToString());
-
-        var root = new ConfigurationBuilder()
-            //.AddEnvironmentVariables()
-            .Build();
-
-        return root;
-    }
-
+    
     private static ServiceCollection CreateServiceCollectionWithLogging()
     {
         var services = new ServiceCollection();
@@ -53,11 +33,9 @@ public class BaseIntegrationTest : BaseTest
     }
 
     /// <summary>
-    ///     Логгер, созданный этой фабрикой - будет писать в xUnit Output (отображается в R#).
+    ///     Loggers from this factory will write to xUnit Output (shown in R# test runner output).
     /// </summary>
     protected ILoggerFactory LoggerFactory { get; }
-
-    public IConfiguration Configuration { get; set; }
 
     protected IServiceProvider Provider
     {
@@ -82,10 +60,4 @@ public class BaseIntegrationTest : BaseTest
 
         return loggerFactory;
     }
-
-    protected virtual void ConfigureServices(IServiceCollection services) { }
-
-    protected virtual void Configure(IServiceProvider provider) { }
-
-    //protected virtual void ConfigureOptions(IntegrationTestOptions options) { }
 }
