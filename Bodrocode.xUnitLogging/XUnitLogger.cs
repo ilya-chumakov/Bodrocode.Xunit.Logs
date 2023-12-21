@@ -37,7 +37,6 @@ public class XUnitLogger : ILogger
 
         string logLevelString = GetLogLevelString(logLevel);
 
-        //todo opt
         string line = $"{logLevelString}: {ShortCategoryName}: {message}";
 
         Output.WriteLine(line);
@@ -46,7 +45,10 @@ public class XUnitLogger : ILogger
             Output.WriteLine(exception.ToString());
     }
 
-    public bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
+    public bool IsEnabled(LogLevel logLevel)
+    {
+        return logLevel != LogLevel.None;
+    }
 
     public IDisposable BeginScope<TState>(TState state)
         where TState : notnull

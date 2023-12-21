@@ -6,20 +6,23 @@ namespace Bodrocode.xUnitLogging;
 
 public class XUnitLoggerProvider : ILoggerProvider
 {
-    public ITestOutputHelper Writer { get; private set; }
-
-    public XUnitLoggerProvider(ITestOutputHelper writer)
+    public XUnitLoggerProvider(ITestOutputHelper output)
     {
-        Writer = writer;
+        Output = output;
     }
 
-    public void Dispose() { }
+    public ITestOutputHelper Output { get; }
+
+    public void Dispose()
+    {
+    }
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new XUnitLogger(categoryName, Writer);
+        return new XUnitLogger(categoryName, Output);
     }
-    
+
+    //todo mock output
     public static ILoggerFactory CreateLoggerFactory(ITestOutputHelper output)
     {
         var services = new ServiceCollection();

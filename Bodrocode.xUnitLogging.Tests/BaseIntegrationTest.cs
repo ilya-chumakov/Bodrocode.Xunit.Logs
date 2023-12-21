@@ -11,7 +11,7 @@ public class BaseIntegrationTest : BaseTest
     public BaseIntegrationTest(ITestOutputHelper console) : base(console)
     {
         var services = CreateServiceCollectionWithLogging();
-
+        //todo return virtuals 
         _provider = services.BuildServiceProvider();
 
         LoggerFactory = CreateLoggerFactory();
