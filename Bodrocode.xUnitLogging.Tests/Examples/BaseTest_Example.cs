@@ -9,9 +9,16 @@ public class BaseTest_Example : BaseTest
     }
 
     [Fact]
-    public void WriteLine_Default_WritesToXUnitOutput()
+    public void OutputWriteLine_Default_WritesToXUnitOutput()
     {
         Output.WriteLine("a");
         Output.WriteLine(1);
+    }
+
+    [Fact]
+    public void WriteLine_Default_WritesToXUnitOutput()
+    {
+        WriteLine("a");
+        WriteLine(1);
     }
 }
