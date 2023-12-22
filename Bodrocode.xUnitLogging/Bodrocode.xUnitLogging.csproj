@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>xUnit logging provider for .NET logging system (writes to xUnit output, which is shown in R# test runner output window or similar tools)</Title>
+    <Version>0.0.1-prerelease</Version>
+    <PackageProjectUrl>https://github.com/ilya-chumakov/Bodrocode.xUnitLogging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ilya-chumakov/Bodrocode.xUnitLogging.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
