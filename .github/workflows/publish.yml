@@ -1,11 +1,12 @@
-name: .NET Build, Test, and Publish Nuget Package
+name: Publish Nuget Package
 
 on:
+  workflow_dispatch:
   push:
     tags: [ 'v*.*.*' ]
 
 env:
-  VERSION: 0.0.1-alpha
+  VERSION: 0.0.1-default
  
 jobs:
   build:
