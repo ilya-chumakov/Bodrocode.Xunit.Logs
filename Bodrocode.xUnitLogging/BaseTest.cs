@@ -1,6 +1,4 @@
-﻿using Xunit.Abstractions;
-
-namespace Bodrocode.xUnitLogging;
+﻿namespace Bodrocode.xUnitLogging;
 
 public class BaseTest
 {
