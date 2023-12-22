@@ -2,13 +2,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests;
+namespace Bodrocode.xUnitLogging.Tests.Examples;
 
-public class FullControl_ManualTests : BaseTest
+public class FullControl_Example : BaseTest
 {
     private readonly LogProducer _sut;
 
-    public FullControl_ManualTests(ITestOutputHelper output) : base(output)
+    public FullControl_Example(ITestOutputHelper output) : base(output)
     {
         var services = new ServiceCollection();
         services.AddLogging(cfg =>

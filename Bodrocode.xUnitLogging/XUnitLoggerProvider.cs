@@ -23,10 +23,15 @@ public class XUnitLoggerProvider : ILoggerProvider
     }
 
     //todo mock output
-    public static ILoggerFactory CreateLoggerFactory(ITestOutputHelper output)
+    public static ILoggerFactory CreateLoggerFactory(
+        ITestOutputHelper output, 
+        LogLevel minLogLevel = LogLevel.Debug)
     {
         var services = new ServiceCollection();
-        services.AddLogging();
+        services.AddLogging(cfg =>
+        {
+            cfg.SetMinimumLevel(minLogLevel);
+        });
         var provider = services.BuildServiceProvider();
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
         loggerFactory.AddProvider(new XUnitLoggerProvider(output));

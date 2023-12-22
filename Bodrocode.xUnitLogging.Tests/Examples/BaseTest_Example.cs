@@ -1,10 +1,10 @@
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests;
+namespace Bodrocode.xUnitLogging.Tests.Examples;
 
-public class BaseTest_ManualTests : BaseTest
+public class BaseTest_Example : BaseTest
 {
-    public BaseTest_ManualTests(ITestOutputHelper output) : base(output)
+    public BaseTest_Example(ITestOutputHelper output) : base(output)
     {
     }
 

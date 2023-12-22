@@ -1,13 +1,13 @@
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests;
+namespace Bodrocode.xUnitLogging.Tests.Examples;
 
-public class MinimalControl_ManualTests : BaseTest
+public class MinimalControl_Example : BaseTest
 {
     private readonly LogProducer _sut;
 
-    public MinimalControl_ManualTests(ITestOutputHelper output) : base(output)
+    public MinimalControl_Example(ITestOutputHelper output) : base(output)
     {
         var loggerFactory = XUnitLoggerProvider.CreateLoggerFactory(output);
 
@@ -17,6 +17,6 @@ public class MinimalControl_ManualTests : BaseTest
     [Fact]
     public void CallDotnetLogger_Default_WritesToXUnitOutput()
     {
-        _sut.CallDotnetLogger("foo", LogLevel.Information);
+        _sut.CallDotnetLogger("foo", LogLevel.Debug);
     }
 }

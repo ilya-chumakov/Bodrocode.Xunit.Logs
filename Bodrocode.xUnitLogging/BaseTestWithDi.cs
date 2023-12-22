@@ -1,18 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests;
+// ReSharper disable VirtualMemberCallInConstructor
 
-public class BaseIntegrationTest : BaseTest
+namespace Bodrocode.xUnitLogging;
+
+public class BaseTestWithDi : BaseTest
 {
     private readonly IServiceProvider _provider;
 
-    public BaseIntegrationTest(ITestOutputHelper console) : base(console)
+    public BaseTestWithDi(ITestOutputHelper console) : base(console)
     {
         var services = CreateServiceCollectionWithLogging();
-        //todo return virtuals 
+        ConfigureServices(services);
+
         _provider = services.BuildServiceProvider();
+        Configure(_provider);
 
         LoggerFactory = CreateLoggerFactory();
     }
@@ -48,4 +51,8 @@ public class BaseIntegrationTest : BaseTest
         loggerFactory.AddProvider(new XUnitLoggerProvider(Output));
         return loggerFactory;
     }
+
+    protected virtual void ConfigureServices(IServiceCollection services) { }
+
+    protected virtual void Configure(IServiceProvider provider) { }
 }

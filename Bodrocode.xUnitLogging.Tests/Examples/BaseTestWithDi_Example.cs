@@ -1,13 +1,13 @@
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests;
+namespace Bodrocode.xUnitLogging.Tests.Examples;
 
-public class BaseIntegrationTest_ManualTests : BaseIntegrationTest
+public class BaseTestWithDi_Example : BaseTestWithDi
 {
     private readonly LogProducer _sut;
 
-    public BaseIntegrationTest_ManualTests(ITestOutputHelper console) : base(console)
+    public BaseTestWithDi_Example(ITestOutputHelper console) : base(console)
     {
         _sut = new LogProducer(LoggerFactory.CreateLogger<LogProducer>());
     }
