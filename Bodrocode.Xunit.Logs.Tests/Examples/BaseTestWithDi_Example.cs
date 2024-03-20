@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests.Examples;
+namespace Bodrocode.Xunit.Logs.Tests.Examples;
 
 public class BaseTestWithDi_Example : BaseTestWithDi
 {

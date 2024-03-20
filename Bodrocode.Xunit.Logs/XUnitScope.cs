@@ -1,4 +1,4 @@
-﻿namespace Bodrocode.xUnitLogging;
+﻿namespace Bodrocode.Xunit.Logs;
 
 /// <summary>
 ///     An empty scope without any logic

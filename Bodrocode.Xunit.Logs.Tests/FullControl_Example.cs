@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace Bodrocode.xUnitLogging.Tests.Examples;
+namespace Bodrocode.Xunit.Logs.Tests;
 
 public class FullControl_Example : BaseTest
 {

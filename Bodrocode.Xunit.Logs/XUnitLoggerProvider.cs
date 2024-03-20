@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-
-namespace Bodrocode.xUnitLogging;
+namespace Bodrocode.Xunit.Logs;
 
 public class XUnitLoggerProvider : ILoggerProvider
 {

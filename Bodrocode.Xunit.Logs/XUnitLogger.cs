@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Bodrocode.xUnitLogging;
+namespace Bodrocode.Xunit.Logs;
 
 public class XUnitLogger : ILogger
 {

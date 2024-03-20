@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 // ReSharper disable VirtualMemberCallInConstructor
 
-namespace Bodrocode.xUnitLogging;
+namespace Bodrocode.Xunit.Logs;
 
 public class BaseTestWithDi : BaseTest
 {

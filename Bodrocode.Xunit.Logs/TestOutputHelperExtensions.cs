@@ -1,4 +1,4 @@
-﻿namespace Bodrocode.xUnitLogging;
+﻿namespace Bodrocode.Xunit.Logs;
 
 public static class TestOutputHelperExtensions
 {
