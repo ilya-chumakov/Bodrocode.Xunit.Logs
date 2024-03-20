@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit.Abstractions;
 
-namespace Bodrocode.Xunit.Logs.Tests.Examples;
+namespace Bodrocode.Xunit.Logs.Tests;
 
 public class XUnitLoggerProvider_Tests : BaseTest
 {

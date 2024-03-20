@@ -27,4 +27,7 @@
     <ProjectReference Include="..\Bodrocode.Xunit.Logs\Bodrocode.Xunit.Logs.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Using Include="Xunit" />
+	</ItemGroup>
 </Project>
