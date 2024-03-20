@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test Bodrocode.xUnitLogging.Tests/Bodrocode.xUnitLogging.Tests.csproj --no-build --verbosity normal
+      run: dotnet test Bodrocode.Xunit.Logs.Tests/Bodrocode.Xunit.Logs.Tests.csproj --no-build --verbosity normal
