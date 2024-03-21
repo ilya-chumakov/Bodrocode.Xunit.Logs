@@ -57,7 +57,7 @@ public class XunitLogger : ILogger
     public IDisposable BeginScope<TState>(TState state)
         where TState : notnull
     {
-        return XUnitScope.Instance;
+        return XunitScope.Instance;
     }
 
     private string GetShortCategoryName(string categoryName)

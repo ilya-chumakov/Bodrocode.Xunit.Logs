@@ -20,7 +20,7 @@ public class DependencyInjection_Example
     }
 
     [Fact]
-    public void CallDotnetLogger_Default_WritesToXUnitOutput()
+    public void CallDotnetLogger_Default_WritesToXunitOutput()
     {
         _sut.CallDotnetLogger("foo", LogLevel.Warning);
     }

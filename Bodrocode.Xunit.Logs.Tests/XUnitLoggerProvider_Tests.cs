@@ -28,7 +28,7 @@ public class XunitLoggerProvider_Tests : BaseOutputTest
     }
 
     [Fact]
-    public void CallDotnetLogger_AboveMinLevel_XUnitHelperIsCalled()
+    public void CallDotnetLogger_AboveMinLevel_XunitHelperIsCalled()
     {
         string input = "foo";
 
@@ -42,7 +42,7 @@ public class XunitLoggerProvider_Tests : BaseOutputTest
     }
 
     [Fact]
-    public void CallDotnetLogger_BelowMinLevel_XUnitHelperIsNotCalled()
+    public void CallDotnetLogger_BelowMinLevel_XunitHelperIsNotCalled()
     {
         string input = "foo";
 

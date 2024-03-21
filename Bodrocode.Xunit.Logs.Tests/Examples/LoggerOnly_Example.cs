@@ -14,7 +14,7 @@ public class LoggerOnly_Example
     }
 
     [Fact]
-    public void CallDotnetLogger_Default_WritesToXUnitOutput()
+    public void CallDotnetLogger_Default_WritesToXunitOutput()
     {
         _producer0.CallDotnetLogger(nameof(_producer1), LogLevel.Trace);
         _producer1.CallDotnetLogger(nameof(_producer1), LogLevel.Trace);

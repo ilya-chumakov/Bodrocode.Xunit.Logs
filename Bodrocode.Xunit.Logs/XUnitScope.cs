@@ -3,9 +3,9 @@
 /// <summary>
 ///     An empty scope without any logic
 /// </summary>
-internal sealed class XUnitScope : IDisposable
+internal sealed class XunitScope : IDisposable
 {
-    public static XUnitScope Instance { get; } = new();
+    public static XunitScope Instance { get; } = new();
 
     public void Dispose()
     {

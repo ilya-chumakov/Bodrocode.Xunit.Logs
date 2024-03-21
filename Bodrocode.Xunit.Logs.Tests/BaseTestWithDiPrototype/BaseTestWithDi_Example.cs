@@ -10,7 +10,7 @@ public class BaseTestWithDi_Example : BaseTestWithDi
     }
 
     [Fact]
-    public void CallDotnetLogger_Default_WritesToXUnitOutput()
+    public void CallDotnetLogger_Default_WritesToXunitOutput()
     {
         _sut.CallDotnetLogger("foo");
     }
