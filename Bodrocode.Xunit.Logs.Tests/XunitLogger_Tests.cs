@@ -3,12 +3,12 @@ using Moq;
 
 namespace Bodrocode.Xunit.Logs.Tests;
 
-public class XunitLoggerProvider_Tests : BaseOutputTest
+public class XunitLogger_Tests : BaseOutputTest
 {
     private readonly LogProducer _logProducer;
     private readonly Mock<ITestOutputHelper> _testOutputHelperMock;
 
-    public XunitLoggerProvider_Tests(ITestOutputHelper output) : base(output)
+    public XunitLogger_Tests(ITestOutputHelper output) : base(output)
     {
         _testOutputHelperMock = new Mock<ITestOutputHelper>();
 
