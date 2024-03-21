@@ -5,12 +5,12 @@ using Xunit.Abstractions;
 
 namespace Bodrocode.Xunit.Logs.Tests;
 
-public class XUnitLoggerProvider_Tests : BaseTest
+public class XunitLoggerProvider_Tests : BaseTest
 {
     private readonly LogProducer _logProducer;
     private readonly Mock<ITestOutputHelper> _testOutputHelperMock;
 
-    public XUnitLoggerProvider_Tests(ITestOutputHelper output) : base(output)
+    public XunitLoggerProvider_Tests(ITestOutputHelper output) : base(output)
     {
         _testOutputHelperMock = new Mock<ITestOutputHelper>();
 
@@ -24,7 +24,7 @@ public class XUnitLoggerProvider_Tests : BaseTest
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
         loggerFactory.AddProvider(
             //substitute
-            new XUnitLoggerProvider(_testOutputHelperMock.Object));
+            new XunitLoggerProvider(_testOutputHelperMock.Object));
 
         _logProducer = new LogProducer(loggerFactory.CreateLogger<LogProducer>());
     }

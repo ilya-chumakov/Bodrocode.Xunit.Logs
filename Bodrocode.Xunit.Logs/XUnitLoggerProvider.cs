@@ -3,9 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.Xunit.Logs;
 
-public class XUnitLoggerProvider : ILoggerProvider
+public class XunitLoggerProvider : ILoggerProvider
 {
-    public XUnitLoggerProvider(ITestOutputHelper output)
+    public XunitLoggerProvider(ITestOutputHelper output)
     {
         Output = output;
     }
@@ -18,7 +18,7 @@ public class XUnitLoggerProvider : ILoggerProvider
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new XUnitLogger(Output, categoryName);
+        return new XunitLogger(Output, categoryName);
     }
 
     //todo mock output
@@ -34,7 +34,7 @@ public class XUnitLoggerProvider : ILoggerProvider
         var provider = services.BuildServiceProvider();
 
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(new XUnitLoggerProvider(output));
+        loggerFactory.AddProvider(new XunitLoggerProvider(output));
         return loggerFactory;
     }
 }

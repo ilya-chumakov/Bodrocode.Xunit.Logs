@@ -10,7 +10,7 @@ public class LoggerOnly_Example
 
     public LoggerOnly_Example(ITestOutputHelper output)
     {
-        _producer1 = new LogProducer(new XUnitLogger<LogProducer>(output, nameof(LogProducer)));
+        _producer1 = new LogProducer(new XunitLogger<LogProducer>(output, nameof(LogProducer)));
         _producer2 = new LogProducer(output.For<LogProducer>());
     }
 

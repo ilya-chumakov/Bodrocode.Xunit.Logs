@@ -2,16 +2,16 @@
 
 namespace Bodrocode.Xunit.Logs;
 
-public class XUnitLogger<T> : XUnitLogger, ILogger<T>
+public class XunitLogger<T> : XunitLogger, ILogger<T>
 {
-    public XUnitLogger(ITestOutputHelper output, string categoryName = "") : base(output, categoryName)
+    public XunitLogger(ITestOutputHelper output, string categoryName = "") : base(output, categoryName)
     {
     }
 }
 
-public class XUnitLogger : ILogger
+public class XunitLogger : ILogger
 {
-    public XUnitLogger(ITestOutputHelper output, string categoryName)
+    public XunitLogger(ITestOutputHelper output, string categoryName)
     {
         CategoryName = categoryName;
         ShortCategoryName = GetShortCategoryName(CategoryName);

@@ -6,6 +6,6 @@ public static class ForExtension
 {
     public static ILogger<TProducer> For<TProducer>(this ITestOutputHelper output)
     {
-        return new XUnitLogger<TProducer>(output, typeof(TProducer).Name);
+        return new XunitLogger<TProducer>(output, typeof(TProducer).Name);
     }
 }

@@ -48,7 +48,7 @@ public class BaseTestWithDi : BaseTest
     private ILoggerFactory CreateLoggerFactory()
     {
         var loggerFactory = Provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(new XUnitLoggerProvider(Output));
+        loggerFactory.AddProvider(new XunitLoggerProvider(Output));
         return loggerFactory;
     }
 
