@@ -18,7 +18,7 @@ public class XUnitLoggerProvider : ILoggerProvider
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new XUnitLogger(categoryName, Output);
+        return new XUnitLogger(Output, categoryName);
     }
 
     //todo mock output
@@ -32,6 +32,7 @@ public class XUnitLoggerProvider : ILoggerProvider
             cfg.SetMinimumLevel(minLogLevel);
         });
         var provider = services.BuildServiceProvider();
+
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
         loggerFactory.AddProvider(new XUnitLoggerProvider(output));
         return loggerFactory;

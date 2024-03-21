@@ -4,10 +4,6 @@ namespace Bodrocode.Xunit.Logs;
 
 public class XUnitLogger<T> : XUnitLogger, ILogger<T>
 {
-    public XUnitLogger(string categoryName, ITestOutputHelper output) : base(categoryName, output)
-    {
-    }
-
     public XUnitLogger(ITestOutputHelper output, string categoryName = "") : base(output, categoryName)
     {
     }
@@ -15,16 +11,9 @@ public class XUnitLogger<T> : XUnitLogger, ILogger<T>
 
 public class XUnitLogger : ILogger
 {
-    public XUnitLogger(string categoryName, ITestOutputHelper output)
+    public XUnitLogger(ITestOutputHelper output, string categoryName)
     {
         CategoryName = categoryName;
-        ShortCategoryName = GetShortCategoryName(CategoryName);
-        Output = output;
-    }
-
-    public XUnitLogger(ITestOutputHelper output, string memberName = "")
-    {
-        CategoryName = memberName;
         ShortCategoryName = GetShortCategoryName(CategoryName);
         Output = output;
     }
@@ -77,7 +66,7 @@ public class XUnitLogger : ILogger
     {
         int lastDotIndex = categoryName.LastIndexOf('.');
 
-        return lastDotIndex > 0 ? categoryName.Substring(lastDotIndex) : categoryName;
+        return lastDotIndex > 0 ? categoryName.Substring(lastDotIndex + 1) : categoryName;
     }
 
     private static string GetLogLevelString(LogLevel logLevel)
