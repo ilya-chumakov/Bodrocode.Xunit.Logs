@@ -41,7 +41,7 @@ public class XunitLogger : ILogger
 
         string logLevelString = GetLogLevelString(logLevel);
 
-        //optimize contatenation?
+        //todos optimize contatenation?
         string line = $"{logLevelString}: {ShortCategoryName}: {message}";
 
         Output.WriteLine(line);
