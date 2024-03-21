@@ -2,7 +2,7 @@
 
 // ReSharper disable VirtualMemberCallInConstructor
 
-namespace Bodrocode.Xunit.Logs;
+namespace Bodrocode.Xunit.Logs.Tests.BaseTestWithDiPrototype;
 
 public class BaseTestWithDi : BaseOutputTest
 {

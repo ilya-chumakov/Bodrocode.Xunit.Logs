@@ -20,7 +20,7 @@ public class XunitLoggerProvider : ILoggerProvider
         return new XunitLogger(Output, categoryName);
     }
 
-    //todo mock output
+    [Obsolete]
     public static ILoggerFactory CreateLoggerFactory(
         ITestOutputHelper output, 
         LogLevel minLogLevel = LogLevel.Debug)
