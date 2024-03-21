@@ -1,11 +1,14 @@
-using Microsoft.Extensions.Logging;
-
 namespace Bodrocode.Xunit.Logs;
 
 public static class AddXunitExtension
 {
-    public static void AddXunit(this ILoggingBuilder loggingBuilder, ITestOutputHelper output)
+    public static ILoggingBuilder AddXunit(this ILoggingBuilder loggingBuilder, ITestOutputHelper output)
     {
-        loggingBuilder.AddProvider(new XunitLoggerProvider(output));
+        return loggingBuilder.AddProvider(new XunitLoggerProvider(output));
+    }
+
+    public static void AddXunitProvider(this ILoggerFactory factory, ITestOutputHelper output)
+    {
+        factory.AddProvider(new XunitLoggerProvider(output));
     }
 }

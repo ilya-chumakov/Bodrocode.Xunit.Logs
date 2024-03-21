@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace Bodrocode.Xunit.Logs;
+﻿namespace Bodrocode.Xunit.Logs;
 
 public class XunitLogger<T> : XunitLogger, ILogger<T>
 {

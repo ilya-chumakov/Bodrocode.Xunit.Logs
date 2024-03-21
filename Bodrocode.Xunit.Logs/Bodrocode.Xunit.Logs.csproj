@@ -27,5 +27,6 @@
 
 	<ItemGroup>
 		<Using Include="Xunit.Abstractions" />
+		<Using Include="Microsoft.Extensions.Logging" />
 	</ItemGroup>
 </Project>

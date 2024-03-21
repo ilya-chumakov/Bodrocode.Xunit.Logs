@@ -1,6 +1,3 @@
-using Microsoft.Extensions.Logging;
-using Xunit.Abstractions;
-
 namespace Bodrocode.Xunit.Logs.Tests.Examples;
 
 public class LoggerOnly_Example

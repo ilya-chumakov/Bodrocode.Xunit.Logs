@@ -1,5 +1,3 @@
-using Xunit.Abstractions;
-
 namespace Bodrocode.Xunit.Logs.Tests.Examples;
 
 public class BaseTest_Example : BaseTest

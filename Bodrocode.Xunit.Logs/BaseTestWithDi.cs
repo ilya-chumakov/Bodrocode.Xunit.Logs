@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 // ReSharper disable VirtualMemberCallInConstructor
 
@@ -48,7 +47,7 @@ public class BaseTestWithDi : BaseTest
     private ILoggerFactory CreateLoggerFactory()
     {
         var loggerFactory = Provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(new XunitLoggerProvider(Output));
+        loggerFactory.AddXunitProvider(Output);
         return loggerFactory;
     }
 

@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Logging;
-
 namespace Bodrocode.Xunit.Logs;
 
 public static class ForExtension
