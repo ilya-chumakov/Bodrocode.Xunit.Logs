@@ -3,7 +3,7 @@ using Moq;
 
 namespace Bodrocode.Xunit.Logs.Tests;
 
-public class XunitLoggerProvider_Tests : BaseTest
+public class XunitLoggerProvider_Tests : BaseOutputTest
 {
     private readonly LogProducer _logProducer;
     private readonly Mock<ITestOutputHelper> _testOutputHelperMock;

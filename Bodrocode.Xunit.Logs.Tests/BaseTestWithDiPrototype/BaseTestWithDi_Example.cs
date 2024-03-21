@@ -1,4 +1,4 @@
-namespace Bodrocode.Xunit.Logs.Tests.Examples;
+namespace Bodrocode.Xunit.Logs.Tests.BaseTestWithDiPrototype;
 
 public class BaseTestWithDi_Example : BaseTestWithDi
 {

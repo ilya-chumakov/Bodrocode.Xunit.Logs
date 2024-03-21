@@ -1,8 +1,8 @@
 namespace Bodrocode.Xunit.Logs.Tests.Examples;
 
-public class BaseTest_Example : BaseTest
+public class BaseOutputTest_Example : BaseOutputTest
 {
-    public BaseTest_Example(ITestOutputHelper output) : base(output)
+    public BaseOutputTest_Example(ITestOutputHelper output) : base(output)
     {
     }
 

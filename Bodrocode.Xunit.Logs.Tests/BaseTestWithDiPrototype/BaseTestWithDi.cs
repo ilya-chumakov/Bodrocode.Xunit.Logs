@@ -4,7 +4,7 @@
 
 namespace Bodrocode.Xunit.Logs;
 
-public class BaseTestWithDi : BaseTest
+public class BaseTestWithDi : BaseOutputTest
 {
     private readonly IServiceProvider _provider;
 
