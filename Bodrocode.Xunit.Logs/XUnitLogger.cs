@@ -2,7 +2,7 @@
 
 public class XunitLogger<T> : XunitLogger, ILogger<T>
 {
-    public XunitLogger(ITestOutputHelper output, string categoryName = "") : base(output, categoryName)
+    public XunitLogger(ITestOutputHelper output) : base(output, typeof(T).Name)
     {
     }
 }
