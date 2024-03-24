@@ -1,19 +1,29 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace Bodrocode.Xunit.Logs;
 
-namespace Bodrocode.xUnitLogging;
-
-public class XUnitLogger : ILogger
+public class XunitLogger<T> : XunitLogger, ILogger<T>
 {
-    public XUnitLogger(string categoryName, ITestOutputHelper output)
+    public XunitLogger(ITestOutputHelper output, Action<XunitLoggerOptions>? configure = null) : base(output,
+        typeof(T).Name, configure)
     {
-        CategoryName = categoryName;
-        ShortCategoryName = GetShortCategoryName(CategoryName);
+    }
+}
+
+public class XunitLogger : ILogger
+{
+    private readonly XunitLoggerOptions _options = new();
+
+    public XunitLogger(ITestOutputHelper output, string categoryName, Action<XunitLoggerOptions>? configure = null)
+    {
         Output = output;
+
+        configure?.Invoke(_options);
+
+        CategoryName = _options.CategoryName == CategoryNameStyle.Full
+            ? categoryName
+            : GetShortCategoryName(categoryName);
     }
 
     protected ITestOutputHelper Output { get; }
-
-    protected string ShortCategoryName { get; }
 
     protected string CategoryName { get; }
 
@@ -25,9 +35,8 @@ public class XUnitLogger : ILogger
     {
         if (!IsEnabled(logLevel))
             return;
-        
-        if (formatter == null)
-            throw new ArgumentNullException(nameof(formatter));
+
+        ArgumentNullException.ThrowIfNull(formatter);
 
         string message = formatter(state, exception);
 
@@ -36,7 +45,8 @@ public class XUnitLogger : ILogger
 
         string logLevelString = GetLogLevelString(logLevel);
 
-        string line = $"{logLevelString}: {ShortCategoryName}: {message}";
+        //todo optimize contatenation?
+        string line = $"{logLevelString}: {CategoryName}: {message}";
 
         Output.WriteLine(line);
 
@@ -46,20 +56,29 @@ public class XUnitLogger : ILogger
 
     public bool IsEnabled(LogLevel logLevel)
     {
-        return logLevel != LogLevel.None;
+        return (int)logLevel >= (int)_options.MinimumLogLevel;
     }
 
     public IDisposable BeginScope<TState>(TState state)
         where TState : notnull
     {
-        return XUnitScope.Instance;
+        return XunitScope.Instance;
     }
 
     private string GetShortCategoryName(string categoryName)
     {
-        int lastDotIndex = categoryName.LastIndexOf('.');
+        try
+        {
+            int lastDotIndex = categoryName.LastIndexOf('.');
 
-        return lastDotIndex > 0 ? categoryName.Substring(lastDotIndex) : categoryName;
+            return lastDotIndex > 0 ? categoryName.Substring(lastDotIndex + 1) : categoryName;
+        }
+        catch (Exception ex)
+        {
+            Output.WriteLine("Error of shortening category name: " + ex);
+
+            return categoryName;
+        }
     }
 
     private static string GetLogLevelString(LogLevel logLevel)

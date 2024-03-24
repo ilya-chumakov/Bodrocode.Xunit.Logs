@@ -1,10 +1,10 @@
-﻿namespace Bodrocode.xUnitLogging;
+﻿namespace Bodrocode.Xunit.Logs;
 
-public class BaseTest
+public class BaseOutputTest
 {
     protected readonly ITestOutputHelper Output;
 
-    public BaseTest(ITestOutputHelper output)
+    public BaseOutputTest(ITestOutputHelper output)
     {
         Output = output;
     }

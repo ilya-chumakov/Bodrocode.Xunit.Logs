@@ -1,17 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
+namespace Bodrocode.Xunit.Logs;
 
-namespace Bodrocode.xUnitLogging;
-
-public class XUnitLoggerProvider : ILoggerProvider
+public class XunitLoggerProvider : ILoggerProvider
 {
-    public XUnitLoggerProvider(ITestOutputHelper output)
+    public XunitLoggerProvider(ITestOutputHelper output, Action<XunitLoggerOptions>? configure = null)
     {
-        Output = output;
+        _output = output;
+        _configure = configure;
     }
 
-    public ITestOutputHelper Output { get; }
+    private readonly ITestOutputHelper _output;
+    private readonly Action<XunitLoggerOptions>? _configure;
 
     public void Dispose()
     {
@@ -19,12 +19,12 @@ public class XUnitLoggerProvider : ILoggerProvider
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new XUnitLogger(categoryName, Output);
+        return new XunitLogger(_output, categoryName, _configure);
     }
 
-    //todo mock output
+    [Obsolete]
     public static ILoggerFactory CreateLoggerFactory(
-        ITestOutputHelper output, 
+        ITestOutputHelper output,
         LogLevel minLogLevel = LogLevel.Debug)
     {
         var services = new ServiceCollection();
@@ -33,8 +33,9 @@ public class XUnitLoggerProvider : ILoggerProvider
             cfg.SetMinimumLevel(minLogLevel);
         });
         var provider = services.BuildServiceProvider();
+
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(new XUnitLoggerProvider(output));
+        loggerFactory.AddProvider(new XunitLoggerProvider(output));
         return loggerFactory;
     }
 }

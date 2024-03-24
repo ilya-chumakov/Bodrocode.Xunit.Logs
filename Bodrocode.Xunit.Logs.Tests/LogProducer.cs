@@ -1,6 +1,4 @@
-using Microsoft.Extensions.Logging;
-
-namespace Bodrocode.xUnitLogging.Tests;
+namespace Bodrocode.Xunit.Logs.Tests;
 
 public class LogProducer
 {
