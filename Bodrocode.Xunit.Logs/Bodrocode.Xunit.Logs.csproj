@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/ilya-chumakov/Bodrocode.Xunit.Logs</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ilya-chumakov/Bodrocode.Xunit.Logs.git</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
