@@ -11,6 +11,7 @@
 		<RepositoryUrl>https://github.com/ilya-chumakov/Bodrocode.Xunit.Logs.git</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<PackageTags>xunit;logs;logging;test;testing;runner;output</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
