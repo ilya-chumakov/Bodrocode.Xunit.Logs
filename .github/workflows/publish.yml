@@ -31,7 +31,8 @@ jobs:
 #     - name: Test
 #       run: dotnet test --no-build --verbosity normal
     - name: pack nuget packages
-      run: dotnet pack --output nupkgs --no-restore --no-build /p:PackageVersion=$VERSION /p:GeneratePackageOnBuild=false
+      # run: dotnet pack --output nupkgs --no-restore --no-build /p:PackageVersion=$VERSION /p:GeneratePackageOnBuild=false
+      run: dotnet pack --output nupkgs /p:PackageVersion=$VERSION /p:GeneratePackageOnBuild=false
     - name: manual file check
       run: ls
     - name: upload nuget package
