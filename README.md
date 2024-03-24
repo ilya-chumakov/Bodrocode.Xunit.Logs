@@ -12,6 +12,9 @@ In short, it adds logs to the output window of your test runner.
 public ManualCreation_Example(ITestOutputHelper output)
 {
     _fooService = new FooService(output.For<FooService>());
+    
+    //or (the same)
+    _fooService = new FooService(new XunitLogger<FooService>(output));
 }
 ```
 
@@ -46,7 +49,7 @@ var logger = new XunitLogger(output, "fooCategory", cfg =>
 ```cs
 var mock = new Mock<ITestOutputHelper>();
 
-var logger = new XunitLogger(mock.Object, "fooCategory");
+var logger = mock.Object.For<FooService>();
 
 logger.Log(LogLevel.Warning, "fooMessage");
 
