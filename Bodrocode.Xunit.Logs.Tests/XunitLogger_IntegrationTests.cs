@@ -3,26 +3,27 @@ using Moq;
 
 namespace Bodrocode.Xunit.Logs.Tests;
 
-public class XunitLogger_Tests : BaseOutputTest
+public class XunitLogger_IntegrationTests : BaseOutputTest
 {
     private readonly LogProducer _logProducer;
-    private readonly Mock<ITestOutputHelper> _testOutputHelperMock;
+    private readonly Mock<ITestOutputHelper> _outputMock;
 
-    public XunitLogger_Tests(ITestOutputHelper output) : base(output)
+    public XunitLogger_IntegrationTests(ITestOutputHelper output) : base(output)
     {
-        _testOutputHelperMock = new Mock<ITestOutputHelper>();
+        _outputMock = new Mock<ITestOutputHelper>();
 
         var services = new ServiceCollection();
         services.AddLogging(cfg =>
         {
-            //filter
             cfg.SetMinimumLevel(LogLevel.Information);
         });
         var provider = services.BuildServiceProvider();
         var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-        loggerFactory.AddProvider(
-            //substitute
-            new XunitLoggerProvider(_testOutputHelperMock.Object));
+        loggerFactory.AddProvider(new XunitLoggerProvider(_outputMock.Object, cfg =>
+        {
+            //Trace and Debug events will NOT be logged as the common threshold set to Information above
+            cfg.MinimumLogLevel = LogLevel.Trace;
+        }));
 
         _logProducer = new LogProducer(loggerFactory.CreateLogger<LogProducer>());
     }
@@ -36,9 +37,9 @@ public class XunitLogger_Tests : BaseOutputTest
         _logProducer.CallDotnetLogger(input, LogLevel.Warning);
 
         //Assert
-        _testOutputHelperMock.Verify(m =>
+        _outputMock.Verify(m =>
                 m.WriteLine(It.Is<string>(x => x.EndsWith(input))),
-            Times.Once);
+            Times.Once());
     }
 
     [Fact]
@@ -50,8 +51,8 @@ public class XunitLogger_Tests : BaseOutputTest
         _logProducer.CallDotnetLogger(input, LogLevel.Debug);
 
         //Assert
-        _testOutputHelperMock.Verify(m =>
+        _outputMock.Verify(m =>
                 m.WriteLine(It.IsAny<string>()),
-            Times.Never);
+            Times.Never());
     }
 }

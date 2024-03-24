@@ -4,12 +4,14 @@ namespace Bodrocode.Xunit.Logs;
 
 public class XunitLoggerProvider : ILoggerProvider
 {
-    public XunitLoggerProvider(ITestOutputHelper output)
+    public XunitLoggerProvider(ITestOutputHelper output, Action<XunitLoggerOptions>? configure = null)
     {
-        Output = output;
+        _output = output;
+        _configure = configure;
     }
 
-    public ITestOutputHelper Output { get; }
+    private readonly ITestOutputHelper _output;
+    private readonly Action<XunitLoggerOptions>? _configure;
 
     public void Dispose()
     {
@@ -17,12 +19,12 @@ public class XunitLoggerProvider : ILoggerProvider
 
     public ILogger CreateLogger(string categoryName)
     {
-        return new XunitLogger(Output, categoryName);
+        return new XunitLogger(_output, categoryName, _configure);
     }
 
     [Obsolete]
     public static ILoggerFactory CreateLoggerFactory(
-        ITestOutputHelper output, 
+        ITestOutputHelper output,
         LogLevel minLogLevel = LogLevel.Debug)
     {
         var services = new ServiceCollection();
