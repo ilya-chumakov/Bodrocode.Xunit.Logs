@@ -18,7 +18,10 @@ public class XunitLogger_UnitTests
     [InlineData(LogLevel.Error, true)]
     public void IsEnabled_Theory_OK(LogLevel input, bool expected)
     {
-        var logger = new XunitLogger(_output, "foo", cfg => { cfg.MinimumLogLevel = LogLevel.Warning; });
+        var logger = new XunitLogger(_output, "foo", cfg =>
+        {
+            cfg.MinimumLogLevel = LogLevel.Warning;
+        });
 
         //Act
         bool actual = logger.IsEnabled(input);
@@ -29,7 +32,10 @@ public class XunitLogger_UnitTests
     [Fact]
     public void CategoryNameStyle_Short_WritesShort()
     {
-        var logger = new XunitLogger(_output, "foo.bar", cfg => { cfg.CategoryName = CategoryNameStyle.Short; });
+        var logger = new XunitLogger(_output, "foo.bar", cfg =>
+        {
+            cfg.CategoryName = CategoryNameStyle.Short;
+        });
 
         //Act
         logger.Log(LogLevel.Warning, nameof(CategoryNameStyle_Short_WritesShort));
