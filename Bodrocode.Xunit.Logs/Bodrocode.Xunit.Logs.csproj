@@ -5,13 +5,16 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<IsPackable>true</IsPackable>
-		<Title>xUnit logging provider for .NET logging system (writes to xUnit output, which is shown in R# test runner output window or similar tools)</Title>
+		<Title>xUnit log provider for .NET Core</Title>
 		<Version>0.0.1-prerelease</Version>
 		<PackageProjectUrl>https://github.com/ilya-chumakov/Bodrocode.Xunit.Logs</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/ilya-chumakov/Bodrocode.Xunit.Logs.git</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageTags>xunit;logs;logging;test;testing;runner;output</PackageTags>
+		<Description>Send application logs to the output window of your test runner</Description>
+		<Authors>Ilya Chumakov</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="xunit" Version="2.7.0" />
 	</ItemGroup>
 
