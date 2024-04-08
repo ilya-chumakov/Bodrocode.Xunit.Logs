@@ -1,4 +1,4 @@
-[![NuGet](http://img.shields.io/nuget/v/Bodrocode.Xunit.Logs.svg)](https://www.nuget.org/packages/Bodrocode.Xunit.Logs/)
+[![NuGet](http://img.shields.io/nuget/v/Bodrocode.Xunit.Logs.svg?logo=nuget&color=blue)](https://www.nuget.org/packages/Bodrocode.Xunit.Logs/)
 
 # Bodrocode.Xunit.Logs
 
